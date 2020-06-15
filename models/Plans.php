@@ -54,4 +54,9 @@ class Plans extends \yii\db\ActiveRecord
             'credit_balance' => 'Credit Balance',
         ];
     }
+
+    public function getFormattedDate()
+    {
+        return date('d.m.Y', strtotime($this->pay_date));
+    }
 }

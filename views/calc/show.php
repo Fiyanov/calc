@@ -47,7 +47,7 @@
             foreach ($plan as $row):?>
                 <tr>
                     <td><?=$row['pay_num']?></td>
-                    <td><?=$row['pay_date']?></td>
+                    <td><?=$row->getFormattedDate()?></td>
                     <td><?=$row['pay_sum']?></td>
                     <td><?=$row['perc_sum']?></td>
                     <td><?=$row['body_sum']?></td>
