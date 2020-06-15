@@ -35,7 +35,7 @@ class CalcService
             $payment->save();
         }
 
-        return true;
+        return $credit->id;
     }
 
     private function setEndDate(Credits $credit)
