@@ -38,15 +38,28 @@ class CalcService
         return $credit->id;
     }
 
+    /**
+     * Дата окончания (последнего платежа)
+     *
+     * @param Credits $credit
+     * @return Credits
+     * @throws \Exception
+     */
     private function setEndDate(Credits $credit)
     {
-        $credit->date_end = (new \DateTime($credit->date_start))
-            ->modify('+' . ($credit->months_count + 1) . ' month')
-            ->format('Y-m-d');
+        $credit->date_end = $this->getPayDate($credit->date_start, $credit->months_count + 1);
 
         return $credit;
     }
 
+    /**
+     * Дата платежа
+     *
+     * @param $start
+     * @param $month
+     * @return string
+     * @throws \Exception
+     */
     private function getPayDate($start, $month)
     {
         return (new \DateTime($start))
@@ -54,17 +67,29 @@ class CalcService
             ->format('Y-m-d');
     }
 
+    /**
+     * Месячный платёж
+     *
+     * @param Credits $credit
+     * @return float|int
+     */
     private function getMonthPayment(Credits $credit)
     {
         $S = $credit->amount;
         $P = $credit->percent;
         $T = $credit->months_count;
 
-        $month = $this->getMonthPercent($P); //round($P / 12 / 100 , 3);
+        $month = $this->getMonthPercent($P);
         $k = ($month * pow((1+$month), $T))/(pow((1+$month), $T) - 1);
         return $k * $S;
     }
 
+    /**
+     * месячный процент
+     *
+     * @param $percent
+     * @return false|float
+     */
     private function getMonthPercent($percent)
     {
         return round($percent / 12 / 100 , 3);
