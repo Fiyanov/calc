@@ -5,6 +5,33 @@
     <div class="panel-heading">График гашения</div>
     <div class="panel-body">
         <table class="table">
+            <tr>
+                <td>
+                    Сумма кредита:
+                </td>
+                <td>
+                    <?=$credit->amount?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Срок кредита:
+                </td>
+                <td>
+                    <?=$credit->months_count?> мес.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Годовая процентная ставка:
+                </td>
+                <td>
+                    <?=$credit->percent?> %
+                </td>
+            </tr>
+        </table>
+
+        <table class="table">
             <thead>
                 <tr>
                     <th>№ платежа</th>

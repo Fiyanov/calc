@@ -26,11 +26,12 @@ class CalcController extends Controller
 
     public function actionShow($id)
     {
+        $credit  = Credits::findOne($id);
         $plan = Plans::findAll(['credit_id' => $id]);
 
         return $this->render('show', [
             'plan' => $plan,
-            'model' => new Credits()
+            'credit' => $credit
         ]);
     }
 }
